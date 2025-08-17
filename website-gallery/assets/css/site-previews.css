@@ -1,0 +1,465 @@
+/* Webサイトプレビュー用CSS */
+
+/* テックソリューションズ - モダンテック */
+.tech-solutions-preview {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.tech-solutions-preview::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(30, 58, 138, 0.3) 0%, transparent 50%);
+}
+
+.tech-solutions-preview::after {
+    content: '💻';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    z-index: 2;
+}
+
+/* ル・シャトー - エレガント・ラグジュアリー */
+.luxury-restaurant-preview {
+    background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.luxury-restaurant-preview::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 30% 20%, rgba(168, 85, 247, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(124, 58, 237, 0.3) 0%, transparent 50%);
+}
+
+.luxury-restaurant-preview::after {
+    content: '🍷';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    z-index: 2;
+}
+
+/* クリエイティブスタジオ - クリエイティブ・カラフル */
+.creative-design-preview {
+    background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.creative-design-preview::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 25% 25%, rgba(249, 115, 22, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(245, 158, 11, 0.3) 0%, transparent 50%);
+}
+
+.creative-design-preview::after {
+    content: '🎨';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    z-index: 2;
+}
+
+/* ストラテジックコンサルティング - プロフェッショナル・ビジネス */
+.consulting-firm-preview {
+    background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.consulting-firm-preview::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(5, 150, 105, 0.3) 0%, transparent 50%);
+}
+
+.consulting-firm-preview::after {
+    content: '💼';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    z-index: 2;
+}
+
+/* ネオンスタジオ - ネオン・フューチャリスティック */
+.game-studio-preview {
+    background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.game-studio-preview::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(239, 68, 68, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(220, 38, 38, 0.3) 0%, transparent 50%);
+}
+
+.game-studio-preview::after {
+    content: '🎮';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    z-index: 2;
+}
+
+/* エレガントサロン - パステル・ソフト */
+.beauty-salon-preview {
+    background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.beauty-salon-preview::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 25% 75%, rgba(244, 114, 182, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 75% 25%, rgba(236, 72, 153, 0.3) 0%, transparent 50%);
+}
+
+.beauty-salon-preview::after {
+    content: '💅';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    z-index: 2;
+}
+
+/* グローバルファイナンス - プロフェッショナル・ビジネス */
+.financial-company-preview {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.financial-company-preview::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(30, 64, 175, 0.3) 0%, transparent 50%);
+}
+
+.financial-company-preview::after {
+    content: '💰';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    z-index: 2;
+}
+
+/* 東京法律事務所 - プロフェッショナル・ビジネス */
+.law-firm-preview {
+    background: linear-gradient(135deg, #7c2d12 0%, #dc2626 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.law-firm-preview::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 30% 70%, rgba(220, 38, 38, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 70% 30%, rgba(124, 45, 18, 0.3) 0%, transparent 50%);
+}
+
+.law-firm-preview::after {
+    content: '⚖️';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    z-index: 2;
+}
+
+/* メディテック - ヘルスケア・トラスト */
+.medical-device-preview {
+    background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.medical-device-preview::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 25% 25%, rgba(16, 185, 129, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(5, 150, 105, 0.3) 0%, transparent 50%);
+}
+
+.medical-device-preview::after {
+    content: '🏥';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    z-index: 2;
+}
+
+/* オートパーツ工業 - 製造業・ソリッド */
+.auto-parts-preview {
+    background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.auto-parts-preview::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(55, 65, 81, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(31, 41, 55, 0.3) 0%, transparent 50%);
+}
+
+.auto-parts-preview::after {
+    content: '🚗';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    z-index: 2;
+}
+
+/* ビジネスアカデミー - 教育・フレンドリー */
+.corporate-training-preview {
+    background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.corporate-training-preview::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(168, 85, 247, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(124, 58, 237, 0.3) 0%, transparent 50%);
+}
+
+.corporate-training-preview::after {
+    content: '🎓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    z-index: 2;
+}
+
+/* 東京不動産 - 不動産・トラスト */
+.real-estate-preview {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.real-estate-preview::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 25% 75%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 75% 25%, rgba(30, 64, 175, 0.3) 0%, transparent 50%);
+}
+
+.real-estate-preview::after {
+    content: '🏠';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    z-index: 2;
+}
+
+/* AppleTech - Apple風ミニマル */
+.apple-tech-preview {
+    background: linear-gradient(135deg, #1f2937 0%, #6b7280 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.apple-tech-preview::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(107, 114, 128, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(31, 41, 55, 0.3) 0%, transparent 50%);
+}
+
+.apple-tech-preview::after {
+    content: '🍎';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    z-index: 2;
+}
+
+/* SearchTech - Google風マテリアル */
+.google-search-preview {
+    background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.google-search-preview::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 25% 25%, rgba(249, 115, 22, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(234, 88, 12, 0.3) 0%, transparent 50%);
+}
+
+.google-search-preview::after {
+    content: '🔍';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    z-index: 2;
+}
+
+/* SoftTech - Microsoft風Fluent */
+.microsoft-soft-preview {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.microsoft-soft-preview::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(30, 64, 175, 0.3) 0%, transparent 50%);
+}
+
+.microsoft-soft-preview::after {
+    content: '🪟';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    z-index: 2;
+}
+
+/* MusicTech - Spotify風ダーク */
+.spotify-music-preview {
+    background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.spotify-music-preview::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(55, 65, 81, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(31, 41, 55, 0.3) 0%, transparent 50%);
+}
+
+.spotify-music-preview::after {
+    content: '🎵';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    z-index: 2;
+}

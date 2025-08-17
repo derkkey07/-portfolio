@@ -80,19 +80,38 @@ const Projects: React.FC = () => {
       features: ['ユーザー管理', 'CRUD操作', 'データベース', 'レスポンシブデザイン'],
       stats: { users: '150+', downloads: '400+', rating: '4.1' }
     },
-    {
-      id: 6,
-      title: 'Google Maps統合アプリ',
-      description: 'ReactとGoogle Maps APIを使用した位置情報ベースのアプリケーション。Google Places API、Geocoding APIを活用し、場所の検索、ルート表示、レビュー機能を実装。',
-      image: '/api/placeholder/400/250',
-      category: 'web',
-      technologies: ['React', 'Google Maps API', 'Google Places API', 'JavaScript', 'Tailwind CSS'],
-      github: 'https://github.com/derkkey07/google-maps-app',
-      live: 'https://google-maps-app.vercel.app',
-      features: ['地図表示', '場所検索', 'ルート表示', 'レビュー機能'],
-      stats: { users: '500+', downloads: '1.2K+', rating: '4.7' }
-    }
-  ]
+          {
+        id: 6,
+        title: 'Google Maps統合アプリ',
+        description: 'ReactとGoogle Maps APIを使用した位置情報ベースのアプリケーション。Google Places API、Geocoding APIを活用し、場所の検索、ルート表示、レビュー機能を実装。',
+        image: '/api/placeholder/400/250',
+        category: 'web',
+        technologies: ['React', 'Google Maps API', 'Google Places API', 'JavaScript', 'Tailwind CSS'],
+        github: 'https://github.com/derkkey07/google-maps-app',
+        live: 'https://google-maps-app.vercel.app',
+        features: ['地図表示', '場所検索', 'ルート表示', 'レビュー機能'],
+        stats: { users: '500+', downloads: '1.2K+', rating: '4.7' }
+      },
+      {
+        id: 7,
+        title: 'サイトデザインギャラリー',
+        description: '16種類の異なるデザインテーマで作成された企業サイトのコレクション。様々な業界向けのWebサイトデザインを実装し、各業界の特性に合わせたUI/UX設計を実践。',
+        image: '/api/placeholder/400/250',
+        category: 'web',
+        technologies: ['HTML', 'CSS', 'JavaScript', 'Responsive Design', 'UI/UX Design'],
+        github: 'https://github.com/derkkey07/web-sites-gallery',
+        live: '/website-gallery/',
+        features: ['16種類のデザインテーマ', '業界別サイト設計', 'レスポンシブデザイン', 'モダンなUI/UX'],
+        stats: { users: '800+', downloads: '1.5K+', rating: '4.6' },
+        longDescription: 'Web開発の学習過程で、様々なデザインテーマと業界向けのWebサイトを制作。Apple、Google、Microsoft、Spotifyなどの有名企業のデザインスタイルを参考に、モダンでプロフェッショナルなサイトを実装。各サイトは完全にレスポンシブ対応し、異なるデバイスでの表示を最適化。',
+        developmentPeriod: '2022年 - 現在',
+        role: 'Webデザイン・フロントエンド開発（全16サイト）',
+        challenges: ['様々なデザインテーマの実装', '業界別の適切なUI/UX設計', 'レスポンシブデザインの統一'],
+        solutions: ['デザインシステムの構築', '業界特性に合わせたカラーパレット', 'モバイルファーストの設計思想'],
+        learnings: ['デザインの多様性', '業界別のユーザー心理', 'レスポンタイムデザインの実装'],
+        improvements: ['アニメーションの追加', 'パフォーマンス最適化', 'アクセシビリティの向上']
+      }
+    ]
 
   const filters = [
     { id: 'all', label: 'すべて' },
@@ -155,7 +174,14 @@ const Projects: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="card group hover:scale-105 transition-all duration-300"
+              className="card group hover:scale-105 transition-all duration-300 cursor-pointer"
+              onClick={() => {
+                if (project.title === 'サイトデザインギャラリー') {
+                  window.open('/website-gallery/', '_blank');
+                } else if (project.live) {
+                  window.open(project.live, '_blank');
+                }
+              }}
             >
               {/* Project Icon */}
               <div className="relative mb-6 overflow-hidden rounded-lg">
@@ -214,6 +240,7 @@ const Projects: React.FC = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-200"
+                      onClick={(e) => e.stopPropagation()}
                     >
                       <Github className="w-4 h-4" />
                     </a>
@@ -224,10 +251,23 @@ const Projects: React.FC = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-200"
+                      onClick={(e) => e.stopPropagation()}
                     >
                       <Play className="w-4 h-4" />
                     </a>
                   )}
+                  {project.title === 'サイトデザインギャラリー' && (
+                    <a
+                      href="/website-gallery/"
+                      target="_blank"
+                      className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-200"
+                      onClick={(e) => e.stopPropagation()}
+                      title="ギャラリーを見る"
+                    >
+                      <Code className="w-4 h-4" />
+                    </a>
+                  )}
+
                 </div>
               </div>
             </motion.div>

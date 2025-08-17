@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>固定表示型ヘッダー - サンプル</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+        
+        .header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .header.scrolled {
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2563eb;
+            transition: all 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+        
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #2563eb;
+            border-radius: 20px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+        
+        .nav-links a:hover::before {
+            opacity: 1;
+        }
+        
+        .nav-links a:hover {
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .nav-links a.active {
+            background: #2563eb;
+            color: white;
+        }
+        
+        .cta-button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .cta-button:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            margin-top: 80px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        .content h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+        
+        .content p {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+        
+        .demo-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .demo-section h3 {
+            color: #2563eb;
+            margin-bottom: 1rem;
+        }
+        
+        .demo-button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin: 0.5rem;
+        }
+        
+        .demo-button:hover {
+            background: #1d4ed8;
+        }
+        
+
+        
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #e9ecef;
+            z-index: 1001;
+        }
+        
+        .scroll-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #2563eb, #667eea);
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+        
+        .floating-cta {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #2563eb;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 999;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .floating-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(37, 99, 235, 0.4);
+        }
+        
+        .floating-cta.hidden {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-indicator">
+        <div class="scroll-progress" id="scrollProgress"></div>
+    </div>
+
+    <header class="header" id="header">
+        <nav class="nav">
+            <div class="logo">FixedCorp</div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">ホーム</a></li>
+                <li><a href="#about">会社概要</a></li>
+                <li><a href="#services">サービス</a></li>
+                <li><a href="#portfolio">ポートフォリオ</a></li>
+                <li><a href="#contact">お問い合わせ</a></li>
+            </ul>
+            <a href="#contact" class="cta-button">お問い合わせ</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <h1>固定表示型ヘッダー</h1>
+        <p>常に画面上部に固定表示されるヘッダーサンプル</p>
+        <a href="#about" class="cta-button">詳しく見る</a>
+    </section>
+
+    <main class="content">
+        <h2>デザインの特徴</h2>
+        <p>このヘッダーデザインは、常に画面上部に固定表示される動作を特徴としています。</p>
+        <p>スクロールしても位置が変わらず、常にナビゲーションにアクセスできる状態を維持します。</p>
+        <p>スクロール時には背景が透明になり、ブラー効果が適用されて視認性が向上します。</p>
+        
+        <div class="demo-section">
+            <h3>固定表示効果</h3>
+            <p>このセクションまでスクロールしても、ヘッダーは常に画面上部に固定表示されています。</p>
+            <p>スクロール時には、ヘッダーの背景が透明になり、ブラー効果が適用されます。</p>
+        </div>
+        
+        <div class="demo-section">
+            <h3>スクロール進捗バー</h3>
+            <p>画面上部には、スクロールの進捗を示すバーが表示されています。</p>
+            <p>ページのどの位置にいるかを視覚的に確認できます。</p>
+        </div>
+        
+        <div class="demo-section">
+            <h3>フローティングCTA</h3>
+            <p>スクロールすると、右下にフローティングのお問い合わせボタンが表示されます。</p>
+            <p>常にアクセスしやすい位置に配置されています。</p>
+        </div>
+        
+        <div style="height: 1000px; background: linear-gradient(135deg, #f0f0f0, #e0e0e0); padding: 2rem; margin: 2rem 0; border-radius: 12px;">
+            <h3>スクロール用の長いコンテンツ</h3>
+            <p>このセクションは、固定表示型ヘッダーの効果を確認するためのものです。</p>
+            <p>下にスクロールしても、ヘッダーは常に画面上部に固定表示されています。</p>
+            <p>スクロール時には、ヘッダーの背景が透明になり、ブラー効果が適用されます。</p>
+        </div>
+    </main>
+
+    <a href="#contact" class="floating-cta" id="floatingCta">📧 お問い合わせ</a>
+
+    <script>
+        let lastScrollTop = 0;
+        const header = document.getElementById('header');
+        const scrollProgress = document.getElementById('scrollProgress');
+        const floatingCta = document.getElementById('floatingCta');
+        
+        // スクロールイベントでヘッダーの変形を制御
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            
+            // スクロール進捗バーの更新
+            scrollProgress.style.width = scrollPercent + '%';
+            
+            // ヘッダーの背景変更
+            if (scrollTop > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            // フローティングCTAの表示/非表示
+            if (scrollTop > 500) {
+                floatingCta.classList.remove('hidden');
+            } else {
+                floatingCta.classList.add('hidden');
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+        
+        // メニュー項目のアクティブ状態を管理
+        const navLinks = document.querySelectorAll('.nav-links a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    const headerHeight = header.offsetHeight;
+                    const targetPosition = targetSection.offsetTop - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+                
+                // アクティブ状態の更新
+                navLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+
+    </script>
+</body>
+</html>

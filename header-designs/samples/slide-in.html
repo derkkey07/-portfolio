@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>スライドイン型ヘッダー - サンプル</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+        
+        .header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transform: translateY(-100%);
+            transition: transform 0.5s ease;
+        }
+        
+        .header.visible {
+            transform: translateY(0);
+        }
+        
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2563eb;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #2563eb;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            margin-top: 80px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        .content h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+        
+        .content p {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+        
+        .demo-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .demo-button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .demo-button:hover {
+            background: #1d4ed8;
+        }
+    </style>
+</head>
+<body>
+    <header class="header" id="header">
+        <nav class="nav">
+            <div class="logo">SlideInCorp</div>
+            <ul class="nav-links">
+                <li><a href="#home">ホーム</a></li>
+                <li><a href="#about">会社概要</a></li>
+                <li><a href="#services">サービス</a></li>
+                <li><a href="#contact">お問い合わせ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>スライドイン型ヘッダー</h1>
+        <p>スクロール時に上からスライドインするヘッダーサンプル</p>
+    </section>
+
+    <main class="content">
+        <h2>デザインの特徴</h2>
+        <p>このヘッダーデザインは、スクロール時に上からスライドインする動作を特徴としています。</p>
+        <p>初期状態では非表示で、スクロールすると滑らかに表示されます。</p>
+        <p>固定位置で表示されるため、常にアクセスしやすくなっています。</p>
+        
+        <div class="demo-section">
+            <h3>デモ機能</h3>
+            <p>以下のボタンでヘッダーの表示・非表示を切り替えできます：</p>
+            <button class="demo-button" onclick="toggleHeader()">ヘッダー表示/非表示</button>
+        </div>
+        
+        <div class="demo-section">
+            <h3>スクロール効果</h3>
+            <p>このセクションまでスクロールすると、ヘッダーが自動的に表示されます。</p>
+            <p>上にスクロールすると、ヘッダーが非表示になります。</p>
+        </div>
+        
+        <div style="height: 1000px; background: linear-gradient(135deg, #f0f0f0, #e0e0e0); padding: 2rem; margin: 2rem 0; border-radius: 12px;">
+            <h3>スクロール用の長いコンテンツ</h3>
+            <p>このセクションは、ヘッダーのスライドイン効果を確認するためのものです。</p>
+            <p>下にスクロールすると、ヘッダーが上からスライドインします。</p>
+            <p>上にスクロールすると、ヘッダーが上にスライドアウトします。</p>
+        </div>
+    </main>
+
+    <script>
+        let lastScrollTop = 0;
+        const header = document.getElementById('header');
+        
+        // スクロールイベントでヘッダーの表示・非表示を制御
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 100) {
+                header.classList.add('visible');
+            } else {
+                header.classList.remove('visible');
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+        
+        // デモボタンでヘッダーの表示・非表示を切り替え
+        function toggleHeader() {
+            header.classList.toggle('visible');
+        }
+    </script>
+</body>
+</html>

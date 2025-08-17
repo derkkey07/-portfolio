@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microsoft風Fluent - 企業向けソフトウェアソリューション</title>
+    <meta name="description" content="Microsoft風Fluentデザインは、企業の業務効率化とデジタル変革を支援するソフトウェアソリューションを提供しています。ERP、CRM、ワークフロー管理システムなど、企業の成長に不可欠なツールを開発・提供し、お客様のビジネスプロセスの最適化をサポートします。">
+    <link rel="stylesheet" href="../themes/microsoft-fluent.css">
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600;700&family=Segoe+UI+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <h1>Microsoft風Fluent</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">ホーム</a></li>
+                <li><a href="#about">会社概要</a></li>
+                <li><a href="#services">サービス</a></li>
+                <li><a href="#contact">お問い合わせ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main">
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h2>企業向けソフトウェア<br>ソリューション</h2>
+                <p>業務効率化とデジタル変革を支援</p>
+                <a href="#contact" class="cta-button">デモを申し込む</a>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <div class="container">
+                <h2>会社概要</h2>
+                <p>SoftTechは、2008年の設立以来、企業の業務効率化とデジタル変革を支援するソフトウェアソリューションの開発・提供に専念してまいりました。私たちは、ERP、CRM、ワークフロー管理システムなど、企業の成長に不可欠なツールを開発し、お客様のビジネスプロセスの最適化をサポートしています。豊富な業界経験と技術力により、多くの企業様から信頼をいただき、継続的なパートナーシップを築いています。</p>
+            </div>
+        </section>
+
+        <section id="services" class="section">
+            <div class="container">
+                <h2>サービス</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h3>ERPシステム</h3>
+                        <p>企業の基幹業務を統合管理するERPシステムを提供します。財務管理、在庫管理、生産管理、人事管理など、企業の主要業務を一元化し、リアルタイムでの情報共有と意思決定をサポートします。業界特化型のカスタマイズも可能です。</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>CRMシステム</h3>
+                        <p>顧客関係管理を効率化するCRMシステムを提供します。顧客情報の一元管理、営業活動の追跡、マーケティング活動の分析など、顧客満足度向上と売上拡大に貢献する機能を搭載しています。</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>ワークフロー管理</h3>
+                        <p>業務プロセスの自動化と標準化を実現するワークフロー管理システムを提供します。承認フローの電子化、タスク管理、進捗追跡など、業務効率の大幅な向上を実現します。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="container">
+                <h2>お問い合わせ</h2>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">お名前</label>
+                        <input type="text" id="name" placeholder="お名前を入力してください" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="company">会社名</label>
+                        <input type="text" id="company" placeholder="会社名を入力してください" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">メールアドレス</label>
+                        <input type="email" id="email" placeholder="メールアドレスを入力してください" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="service">ご興味のあるサービス</label>
+                        <select id="service" required>
+                            <option value="">サービスを選択してください</option>
+                            <option value="erp">ERPシステム</option>
+                            <option value="crm">CRMシステム</option>
+                            <option value="workflow">ワークフロー管理</option>
+                            <option value="other">その他</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">お問い合わせ内容</label>
+                        <textarea id="message" placeholder="ご質問やご要望をお聞かせください" rows="5" required></textarea>
+                    </div>
+                    <button type="submit">お問い合わせを送信</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 SoftTech. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <button class="fab" title="お問い合わせ">💬</button>
+</body>
+</html>

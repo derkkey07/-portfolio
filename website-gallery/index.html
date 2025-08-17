@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webサイトデザインギャラリー</title>
+    <meta name="description" content="様々なデザインテーマで作成されたWebサイトデザインのギャラリー">
+    <link rel="stylesheet" href="main-navigation.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background: #f8fafc;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* ヘッダーのスタイル */
+        .header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(37, 99, 235, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+        
+        .nav-brand h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+        
+        .sites-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* ヘッダーデザイン用のグリッド（より小さく、4列） */
+        #headers .sites-grid {
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            padding: 1.5rem;
+        }
+        
+        /* お問い合わせフォーム用のグリッド（標準サイズ、3列） */
+        #contact-forms .sites-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            padding: 2rem;
+        }
+        
+        .site-card {
+            background: white;
+            border-radius: 12px;
+            padding: 0.75rem;
+            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.1);
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        
+        /* ヘッダーデザイン用のカード（より小さく） */
+        #headers .site-card {
+            padding: 0.5rem;
+        }
+        
+        .site-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.2);
+            border-color: #2563eb;
+        }
+        
+        .site-preview {
+            width: 100%;
+            height: 200px;
+            border-radius: 8px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(37, 99, 235, 0.1);
+        }
+        
+        /* ヘッダーデザイン用のプレビュー画像（小さく） */
+        .header-slide-in-preview,
+        .header-dropdown-preview,
+        .header-fullscreen-preview,
+        .header-push-preview,
+        .header-drawer-preview,
+        .header-animation-preview,
+        .header-fixed-preview {
+            height: 120px;
+            background-size: contain;
+            background-color: #f1f5f9;
+        }
+        
+        /* お問い合わせフォーム用のプレビュー画像（標準サイズ） */
+        #contact-forms .site-preview {
+            height: 200px;
+            background-size: cover;
+        }
+        
+        /* 各お問い合わせフォームの個別画像 */
+        .modern-gradient-form-preview { background-image: url('../contact-forms/assets/images/gradient-form.png'); }
+        .minimal-clean-form-preview { background-image: url('../contact-forms/assets/images/minimal-form.png'); }
+        .simple-request-form-preview { background-image: url('../contact-forms/assets/images/request-form.png'); }
+        .contact-window-form-preview { background-image: url('../contact-forms/assets/images/contact-window-form.png'); }
+        
+        /* 各サイトの個別画像 */
+        .tech-solutions-preview { background-image: url('assets/images/tech-solutions.png'); }
+        .luxury-restaurant-preview { background-image: url('assets/images/luxury-restaurant.png'); }
+        .creative-design-preview { background-image: url('assets/images/creative-design.png'); }
+        .consulting-firm-preview { background-image: url('assets/images/consulting-firm.png'); }
+        .game-studio-preview { background-image: url('assets/images/game-studio.png'); }
+        .beauty-salon-preview { background-image: url('assets/images/beauty-salon.png'); }
+        .financial-company-preview { background-image: url('assets/images/financial-company.png'); }
+        .law-firm-preview { background-image: url('assets/images/law-firm.png'); }
+        .medical-device-preview { background-image: url('assets/images/medical-device.png'); }
+        .auto-parts-preview { background-image: url('assets/images/auto-parts.png'); }
+        .corporate-training-preview { background-image: url('assets/images/corporate-training.png'); }
+        .real-estate-preview { background-image: url('assets/images/real-estate.png'); }
+        .apple-style-preview { background-image: url('assets/images/apple-style.png'); }
+        .google-style-preview { background-image: url('assets/images/google-style.png'); }
+        .microsoft-style-preview { background-image: url('assets/images/microsoft-style.png'); }
+        .spotify-style-preview { background-image: url('assets/images/spotify-style.png'); }
+        
+        /* ヘッダーデザイン用のプレビュー画像 */
+        .header-slide-in-preview { background-image: url('../header-designs/assets/images/slide-in-preview.svg'); }
+        .header-dropdown-preview { background-image: url('../header-designs/assets/images/dropdown-preview.svg'); }
+        .header-fullscreen-preview { background-image: url('../header-designs/assets/images/fullscreen-preview.svg'); }
+        .header-push-preview { background-image: url('../header-designs/assets/images/push-preview.svg'); }
+        .header-drawer-preview { background-image: url('../header-designs/assets/images/drawer-preview.svg'); }
+        .header-animation-preview { background-image: url('../header-designs/assets/images/animation-preview.svg'); }
+        .header-fixed-preview { background-image: url('../header-designs/assets/images/fixed-preview.svg'); }
+        
+        .site-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .site-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .view-details-btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .view-details-btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+        
+        /* デスクトップ: ホバー時に表示 */
+        @media (hover: hover) {
+            .site-card:hover .site-info {
+                transform: translateY(0);
+            }
+        }
+        
+        /* モバイル・タブレット: タップ時に表示 */
+        @media (hover: none) {
+            .site-card.active .site-info {
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .sites-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                padding: 1rem;
+            }
+            
+            #headers .sites-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .sites-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            
+            #headers .sites-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
+                padding: 0.5rem;
+            }
+        }
+        
+        /* カテゴリタブのスタイル */
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            margin-top: 2rem;
+        }
+        
+        .tab-btn {
+            padding: 0.75rem 2rem;
+            border: 2px solid #2563eb;
+            background: transparent;
+            color: #2563eb;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-btn:hover {
+            background: #2563eb;
+            color: white;
+        }
+        
+        .tab-btn.active {
+            background: #2563eb;
+            color: white;
+        }
+        
+        .category-content {
+            display: none;
+        }
+        
+        .category-content.active {
+            display: block;
+        }
+        
+        .category-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 2rem;
+        }
+        
+        /* 説明セクションのスタイル */
+        .description-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 2rem 0;
+            border-bottom: 1px solid #e2e8f0;
+            margin-top: 0;
+        }
+        
+        .description-section .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .description-content {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .description-text {
+            font-size: 1.1rem;
+            color: #475569;
+            margin: 0;
+            font-weight: 500;
+        }
+        
+        .recommendation-text {
+            font-size: 1rem;
+            color: #2563eb;
+            margin: 0;
+            font-weight: 600;
+        }
+        
+        .note-text {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin: 0;
+            font-weight: 400;
+            font-style: italic;
+        }
+        
+        @media (max-width: 768px) {
+            .description-section {
+                padding: 1.5rem 0;
+            }
+            
+            .description-text {
+                font-size: 1rem;
+            }
+            
+            .recommendation-text {
+                font-size: 0.9rem;
+            }
+            
+            .note-text {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <h1>🏗️ Webサイトデザインギャラリー</h1>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 説明セクション -->
+    <section class="description-section">
+        <div class="container">
+            <div class="description-content">
+                <p class="description-text">豊富な実績から厳選したWebデザインの数々をご紹介</p>
+                <p class="recommendation-text">✨ デザインの細部までお楽しみいただけます</p>
+                <p class="note-text">💻 より良い体験のため、PCでの閲覧をお勧めします</p>
+            </div>
+        </div>
+    </section>
+
+    <main class="main">
+        <!-- カテゴリタブ -->
+        <div class="category-tabs">
+            <button class="tab-btn active" data-category="themes">テーマ</button>
+            <button class="tab-btn" data-category="headers">ヘッダー</button>
+            <button class="tab-btn" data-category="contact-forms">お問い合わせ</button>
+        </div>
+
+        <!-- テーマカテゴリ -->
+        <div class="category-content active" id="themes">
+            <h2 class="category-title">Webサイトテーマ</h2>
+            <div class="sites-grid">
+                <div class="site-card" data-site="tech-solutions">
+                    <div class="site-preview tech-solutions-preview">
+                        <div class="site-info">
+                            <div class="site-name">テックソリューションズ</div>
+                            <button class="view-details-btn" onclick="window.open('tech-solutions/index.html', '_blank')">詳しく見る</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="site-card" data-site="luxury-restaurant">
+                    <div class="site-preview luxury-restaurant-preview">
+                        <div class="site-info">
+                            <div class="site-name">ル・シャトー</div>
+                            <button class="view-details-btn" onclick="window.open('luxury-restaurant/index.html', '_blank')">詳しく見る</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="site-card" data-site="creative-design">
+                    <div class="site-preview creative-design-preview">
+                        <div class="site-info">
+                            <div class="site-name">クリエイティブスタジオ</div>
+                            <button class="view-details-btn" onclick="window.open('creative-design/index.html', '_blank')">詳しく見る</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="site-card" data-site="consulting-firm">
+                    <div class="site-preview consulting-firm-preview">
+                        <div class="site-info">
+                            <div class="site-name">ストラテジックコンサルティング</div>
+                            <button class="view-details-btn" onclick="window.open('consulting-firm/index.html', '_blank')">詳しく見る</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="site-card" data-site="game-studio">
+                    <div class="site-preview game-studio-preview">
+                        <div class="site-info">
+                            <div class="site-name">ネオンスタジオ</div>
+                            <button class="view-details-btn" onclick="window.open('game-studio/index.html', '_blank')">詳しく見る</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="site-card" data-site="beauty-salon">
+                    <div class="site-preview beauty-salon-preview">
+                        <div class="site-info">
+                            <div class="site-name">エレガントサロン</div>
+                            <button class="view-details-btn" onclick="window.open('beauty-salon/index.html', '_blank')">詳しく見る</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="site-card" data-site="financial-company">
+                    <div class="site-preview financial-company-preview">
+                        <div class="site-info">
+                            <div class="site-name">グローバルファイナンス</div>
+                            <button class="view-details-btn" onclick="window.open('financial-company/index.html', '_blank')">詳しく見る</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="site-card" data-site="law-firm">
+                    <div class="site-preview law-firm-preview">
+                        <div class="site-info">
+                            <div class="site-name">東京法律事務所</div>
+                            <button class="view-details-btn" onclick="window.open('law-firm/index.html', '_blank')">詳しく見る</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="site-card" data-site="medical-device-company">
+                    <div class="site-preview medical-device-preview">
+                        <div class="site-info">
+                            <div class="site-name">メディテック</div>
+                            <button class="view-details-btn" onclick="window.open('medical-device-company/index.html', '_blank')">詳しく見る</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="site-card" data-site="auto-parts-manufacturer">
+                    <div class="site-preview auto-parts-preview">
+                        <div class="site-info">
+                            <div class="site-name">オートパーツ工業</div>
+                            <button class="view-details-btn" onclick="window.open('auto-parts-manufacturer/index.html', '_blank')">詳しく見る</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="site-card" data-site="corporate-training">
+                    <div class="site-preview corporate-training-preview">
+                        <div class="site-info">
+                            <div class="site-name">ビジネスアカデミー</div>
+                            <button class="view-details-btn" onclick="window.open('corporate-training/index.html', '_blank')">詳しく見る</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="site-card" data-site="real-estate-company">
+                    <div class="site-preview real-estate-preview">
+                        <div class="site-info">
+                            <div class="site-name">東京不動産</div>
+                            <button class="view-details-btn" onclick="window.open('real-estate-company/index.html', '_blank')">詳しく見る</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="site-card" data-site="apple-tech">
+                    <div class="site-preview apple-style-preview">
+                        <div class="site-info">
+                            <div class="site-name">Apple風ミニマル</div>
+                            <button class="view-details-btn" onclick="window.open('apple-tech/index.html', '_blank')">詳しく見る</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="site-card" data-site="google-search">
+                    <div class="site-preview google-style-preview">
+                        <div class="site-info">
+                            <div class="site-name">Google風マテリアル</div>
+                            <button class="view-details-btn" onclick="window.open('google-search/index.html', '_blank')">詳しく見る</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="site-card" data-site="microsoft-soft">
+                    <div class="site-preview microsoft-style-preview">
+                        <div class="site-info">
+                            <div class="site-name">Microsoft風Fluent</div>
+                            <button class="view-details-btn" onclick="window.open('microsoft-soft/index.html', '_blank')">詳しく見る</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="site-card" data-site="spotify-music">
+                    <div class="site-preview spotify-style-preview">
+                        <div class="site-info">
+                            <div class="site-name">Spotify風ダーク</div>
+                            <button class="view-details-btn" onclick="window.open('spotify-music/index.html', '_blank')">詳しく見る</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ヘッダーカテゴリ -->
+        <div class="category-content" id="headers">
+            <h2 class="category-title">ヘッダーデザイン</h2>
+            <div class="sites-grid">
+                <div class="site-card" data-site="header-slide-in">
+                    <div class="site-preview header-slide-in-preview">
+                        <div class="site-info">
+                            <div class="site-name">スライドイン型</div>
+                            <button class="view-details-btn" onclick="window.open('/header-designs/samples/slide-in.html', '_blank')">詳しく見る</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="site-card" data-site="header-dropdown">
+                    <div class="site-preview header-dropdown-preview">
+                        <div class="site-info">
+                            <div class="site-name">ドロップダウン型</div>
+                            <button class="view-details-btn" onclick="window.open('/header-designs/samples/dropdown.html', '_blank')">詳しく見る</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="site-card" data-site="header-fullscreen">
+                    <div class="site-preview header-fullscreen-preview">
+                        <div class="site-info">
+                            <div class="site-name">フルスクリーン型</div>
+                            <button class="view-details-btn" onclick="window.open('/header-designs/samples/fullscreen.html', '_blank')">詳しく見る</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="site-card" data-site="header-push">
+                    <div class="site-preview header-push-preview">
+                        <div class="site-info">
+                            <div class="site-name">プッシュ型</div>
+                            <button class="view-details-btn" onclick="window.open('/header-designs/samples/push.html', '_blank')">詳しく見る</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="site-card" data-site="header-drawer">
+                    <div class="site-preview header-drawer-preview">
+                        <div class="site-info">
+                            <div class="site-name">ドロワー型（オーバーレイ型）</div>
+                            <button class="view-details-btn" onclick="window.open('/header-designs/samples/drawer.html', '_blank')">詳しく見る</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="site-card" data-site="header-animation">
+                    <div class="site-preview header-animation-preview">
+                        <div class="site-info">
+                            <div class="site-name">アニメーション変形型</div>
+                            <button class="view-details-btn" onclick="window.open('/header-designs/samples/animation-transform.html', '_blank')">詳しく見る</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="site-card" data-site="header-fixed">
+                    <div class="site-preview header-fixed-preview">
+                        <div class="site-info">
+                            <div class="site-name">固定表示型</div>
+                            <button class="view-details-btn" onclick="window.open('/header-designs/samples/fixed-display.html', '_blank')">詳しく見る</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- お問い合わせフォームカテゴリ -->
+        <div class="category-content" id="contact-forms">
+            <h2 class="category-title">お問い合わせフォームデザイン</h2>
+            <div class="sites-grid">
+                <div class="site-card" data-site="modern-contact">
+                    <div class="site-preview modern-gradient-form-preview">
+                        <div class="site-info">
+                            <div class="site-name">標準型</div>
+                            <button class="view-details-btn" onclick="window.open('/contact-forms/samples/gradient-form.html', '_blank')">詳しく見る</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="site-card" data-site="minimal-contact">
+                    <div class="site-preview minimal-clean-form-preview">
+                        <div class="site-info">
+                            <div class="site-name">縦型レイアウト</div>
+                            <button class="view-details-btn" onclick="window.open('/contact-forms/samples/minimal-form.html', '_blank')">詳しく見る</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="site-card" data-site="simple-request">
+                    <div class="site-preview simple-request-form-preview">
+                        <div class="site-info">
+                            <div class="site-name">ラベル左配置</div>
+                            <button class="view-details-btn" onclick="window.open('/contact-forms/samples/request-form.html', '_blank')">詳しく見る</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="site-card" data-site="contact-window">
+                    <div class="site-preview contact-window-form-preview">
+                        <div class="site-info">
+                            <div class="site-name">お問い合わせ窓口</div>
+                            <button class="view-details-btn" onclick="window.open('/contact-forms/samples/contact-window.html', '_blank')">詳しく見る</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Webサイトデザインギャラリー. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="main-navigation.js"></script>
+    <script>
+        // カテゴリタブの切り替え機能
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const categoryContents = document.querySelectorAll('.category-content');
+            
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    
+                    // タブボタンのアクティブ状態を切り替え
+                    tabBtns.forEach(tab => tab.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // カテゴリコンテンツの表示を切り替え
+                    categoryContents.forEach(content => {
+                        content.classList.remove('active');
+                        if (content.id === category) {
+                            content.classList.add('active');
+                        }
+                    });
+                });
+            });
+            
+            // モバイル・タブレット用のタップ機能
+            const siteCards = document.querySelectorAll('.site-card');
+            
+            siteCards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    // ボタンがクリックされた場合は何もしない（ボタンのonclickが実行される）
+                    if (e.target.classList.contains('view-details-btn')) {
+                        return;
+                    }
+                    
+                    // 他のカードのアクティブ状態を解除
+                    siteCards.forEach(otherCard => {
+                        if (otherCard !== card) {
+                            otherCard.classList.remove('active');
+                        }
+                    });
+                    
+                    // 現在のカードのアクティブ状態を切り替え
+                    card.classList.toggle('active');
+                });
+            });
+            
+            // カード以外をクリックした時にアクティブ状態を解除
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.site-card')) {
+                    siteCards.forEach(card => {
+                        card.classList.remove('active');
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

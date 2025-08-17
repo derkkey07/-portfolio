@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ドロップダウン型ヘッダー - サンプル</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+        
+        .header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2563eb;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-item {
+            position: relative;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+            display: block;
+        }
+        
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+        }
+        
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-menu li {
+            list-style: none;
+        }
+        
+        .dropdown-menu a {
+            padding: 0.75rem 1.5rem;
+            color: #666;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+        
+        .dropdown-menu a:hover {
+            background: #f8f9fa;
+            color: #2563eb;
+            border-left-color: #2563eb;
+        }
+        
+        .mega-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            min-width: 400px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            padding: 1.5rem;
+        }
+        
+        .nav-item:hover .mega-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .mega-dropdown-content {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+        
+        .mega-dropdown-section h4 {
+            color: #2563eb;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .mega-dropdown-section ul {
+            list-style: none;
+        }
+        
+        .mega-dropdown-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .mega-dropdown-section a {
+            color: #666;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+        
+        .mega-dropdown-section a:hover {
+            color: #2563eb;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        .content h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+        
+        .content p {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+        
+        .demo-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .demo-section h3 {
+            color: #2563eb;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">DropdownCorp</div>
+            <ul class="nav-links">
+                <li class="nav-item">
+                    <a href="#home">ホーム</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about">会社概要</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#vision">企業ビジョン</a></li>
+                        <li><a href="#history">会社沿革</a></li>
+                        <li><a href="#team">チーム紹介</a></li>
+                        <li><a href="#culture">企業文化</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#services">サービス</a>
+                    <div class="mega-dropdown">
+                        <div class="mega-dropdown-content">
+                            <div class="mega-dropdown-section">
+                                <h4>Web開発</h4>
+                                <ul>
+                                    <li><a href="#frontend">フロントエンド</a></li>
+                                    <li><a href="#backend">バックエンド</a></li>
+                                    <li><a href="#mobile">モバイルアプリ</a></li>
+                                    <li><a href="#ecommerce">ECサイト</a></li>
+                                </ul>
+                            </div>
+                            <div class="mega-dropdown-section">
+                                <h4>デザイン</h4>
+                                <ul>
+                                    <li><a href="#ui">UI/UXデザイン</a></li>
+                                    <li><a href="#branding">ブランディング</a></li>
+                                    <li><a href="#graphic">グラフィックデザイン</a></li>
+                                    <li><a href="#illustration">イラスト</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact">お問い合わせ</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#support">サポート</a></li>
+                        <li><a href="#quote">お見積り</a></li>
+                        <li><a href="#partnership">パートナーシップ</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>ドロップダウン型ヘッダー</h1>
+        <p>ホバー時にドロップダウンメニューが表示されるヘッダーサンプル</p>
+    </section>
+
+    <main class="content">
+        <h2>デザインの特徴</h2>
+        <p>このヘッダーデザインは、ホバー時にドロップダウンメニューが表示される動作を特徴としています。</p>
+        <p>通常のドロップダウンと、より詳細な情報を表示するメガドロップダウンの両方を実装しています。</p>
+        <p>スムーズなアニメーションと視覚的なフィードバックで、ユーザビリティを向上させています。</p>
+        
+        <div class="demo-section">
+            <h3>ドロップダウンメニュー</h3>
+            <p>ヘッダーの「会社概要」「サービス」「お問い合わせ」にマウスを乗せると、ドロップダウンメニューが表示されます。</p>
+            <p>「サービス」には、より詳細な情報を表示するメガドロップダウンが実装されています。</p>
+        </div>
+        
+        <div class="demo-section">
+            <h3>インタラクション効果</h3>
+            <p>メニュー項目にホバーすると、色が変化し、アンダーラインが表示されます。</p>
+            <p>ドロップダウンメニュー内の項目にホバーすると、背景色が変化し、左側にアクセントカラーのボーダーが表示されます。</p>
+        </div>
+        
+        <div class="demo-section">
+            <h3>レスポンシブ対応</h3>
+            <p>ドロップダウンメニューは、画面サイズに応じて適切に配置されます。</p>
+            <p>メガドロップダウンは、十分なスペースがある場合のみ表示されます。</p>
+        </div>
+    </main>
+</body>
+</html>

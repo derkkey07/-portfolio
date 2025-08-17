@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ダーク・テクノロジー型メインビジュアル - サンプル</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background: #0a0a0a;
+            overflow-x: hidden;
+        }
+        
+        .hero {
+            min-height: 100vh;
+            background: #0a0a0a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 0, 255, 0.1) 0%, transparent 50%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        
+        .grid-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+        
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        .hero-content {
+            text-align: center;
+            color: #e0e0e0;
+            position: relative;
+            z-index: 3;
+            max-width: 800px;
+            padding: 2rem;
+        }
+        
+        .hero-title {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            color: #00ffff;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(0, 255, 255, 0.5); }
+            to { text-shadow: 0 0 30px rgba(0, 255, 255, 0.8), 0 0 40px rgba(0, 255, 255, 0.3); }
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            font-weight: 300;
+            margin-bottom: 2rem;
+            color: #ff00ff;
+            font-family: 'Orbitron', monospace;
+            animation: slideInUp 1s ease-out 0.3s both;
+        }
+        
+        .hero-description {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            color: #b0b0b0;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: slideInUp 1s ease-out 0.6s both;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideInUp 1s ease-out 0.9s both;
+        }
+        
+        .cta-primary {
+            background: linear-gradient(45deg, #00ffff, #0080ff);
+            color: #000;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 0;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .cta-primary:hover::before {
+            left: 100%;
+        }
+        
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+        }
+        
+        .cta-secondary {
+            background: transparent;
+            color: #ff00ff;
+            padding: 1rem 2.5rem;
+            border: 2px solid #ff00ff;
+            border-radius: 0;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .cta-secondary:hover {
+            background: #ff00ff;
+            color: #000;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+        }
+        
+        .floating-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #00ffff;
+            border-radius: 50%;
+            animation: floatParticle 8s ease-in-out infinite;
+        }
+        
+        .particle:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .particle:nth-child(2) {
+            top: 60%;
+            left: 80%;
+            animation-delay: 2s;
+            background: #ff00ff;
+        }
+        
+        .particle:nth-child(3) {
+            top: 80%;
+            left: 20%;
+            animation-delay: 4s;
+            background: #00ff80;
+        }
+        
+        .particle:nth-child(4) {
+            top: 30%;
+            left: 90%;
+            animation-delay: 6s;
+            background: #ff8000;
+        }
+        
+        @keyframes floatParticle {
+            0%, 100% { 
+                transform: translateY(0px) scale(1); 
+                opacity: 0.3; 
+            }
+            50% { 
+                transform: translateY(-40px) scale(1.5); 
+                opacity: 1; 
+            }
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #00ffff;
+            opacity: 0.7;
+            animation: bounce 2s infinite;
+            z-index: 3;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+        
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            background: #111;
+        }
+        
+        .content h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #00ffff;
+            text-align: center;
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+        }
+        
+        .content p {
+            margin-bottom: 1.5rem;
+            color: #b0b0b0;
+            font-size: 1.1rem;
+        }
+        
+        .demo-section {
+            background: #1a1a1a;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border-left: 4px solid #00ffff;
+            box-shadow: 0 4px 15px rgba(0, 255, 255, 0.1);
+        }
+        
+        .demo-section h3 {
+            color: #00ffff;
+            margin-bottom: 1rem;
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .tech-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .tech-feature {
+            text-align: center;
+            padding: 2rem;
+            background: #1a1a1a;
+            border-radius: 8px;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+        }
+        
+        .tech-feature:hover {
+            border-color: #00ffff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+        }
+        
+        .tech-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #00ffff, #0080ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.5rem;
+            color: #000;
+        }
+        
+        .tech-feature h4 {
+            color: #00ffff;
+            margin-bottom: 1rem;
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .tech-feature p {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="grid-background"></div>
+        <div class="floating-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        
+        <div class="hero-content">
+            <h1 class="hero-title">ダーク・テクノロジー型</h1>
+            <p class="hero-subtitle">サイバーパンク風の未来感あふれるメインビジュアル</p>
+            <p class="hero-description">
+                暗い背景にネオンカラーのアクセント、アニメーションするグリッド背景とフローティングパーティクルで、
+                未来感とテクノロジー感を演出するメインビジュアルです。
+            </p>
+            
+            <div class="cta-buttons">
+                <a href="#demo" class="cta-primary">デモを見る</a>
+                <a href="#contact" class="cta-secondary">お問い合わせ</a>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 13l5 5 5-5"/>
+                <path d="M7 6l5 5 5-5"/>
+            </svg>
+        </div>
+    </section>
+
+    <main class="content">
+        <h2>テクノロジーデザインの特徴</h2>
+        <p>このメインビジュアルは、サイバーパンクやサイエンスフィクションの世界観を表現しています。</p>
+        
+        <div class="tech-features">
+            <div class="tech-feature">
+                <div class="tech-icon">🔮</div>
+                <h4>ネオンエフェクト</h4>
+                <p>サイアンとマゼンタのネオンカラーで、未来感とテクノロジー感を演出</p>
+            </div>
+            <div class="tech-feature">
+                <div class="tech-icon">🌐</div>
+                <h4>アニメーショングリッド</h4>
+                <p>動的に移動するグリッド背景で、デジタル空間の奥行きを表現</p>
+            </div>
+            <div class="tech-feature">
+                <div class="tech-icon">✨</div>
+                <h4>フローティングパーティクル</h4>
+                <p>様々な色のパーティクルが浮遊し、動的な要素を追加</p>
+            </div>
+            <div class="tech-feature">
+                <div class="tech-icon">🎭</div>
+                <h4>サイバーパンク美学</h4>
+                <p>暗い背景と明るいアクセントカラーのコントラストで、未来都市の雰囲気を演出</p>
+            </div>
+        </div>
+        
+        <div class="demo-section">
+            <h3>テクノロジーデザインの利点</h3>
+            <p>ダークテーマとネオンカラーの組み合わせは、テクノロジー企業やゲーム、エンターテイメントサイトに最適です。</p>
+            <p>視覚的なインパクトが強く、ユーザーの注目を集め、ブランドの先進性をアピールできます。</p>
+        </div>
+        
+        <div class="demo-section">
+            <h3>アニメーションの効果</h3>
+            <p>グリッド背景の移動やパーティクルの浮遊は、静的なデザインに動的な要素を加え、ユーザーエンゲージメントを向上させます。</p>
+            <p>適度なアニメーションは、サイトに生命感を与え、ユーザーの興味を引き付けます。</p>
+        </div>
+    </main>
+</body>
+</html>

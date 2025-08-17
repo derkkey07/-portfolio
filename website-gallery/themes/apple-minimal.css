@@ -1,0 +1,369 @@
+/* Apple風ミニマル・洗練テーマ */
+@import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&family=SF+Pro+Text:wght@300;400;500;600&display=swap');
+
+:root {
+    --apple-bg: #ffffff;
+    --apple-text: #1d1d1f;
+    --apple-text-secondary: #86868b;
+    --apple-blue: #007aff;
+    --apple-blue-dark: #0056cc;
+    --apple-gray: #f5f5f7;
+    --apple-gray-dark: #d2d2d7;
+    --apple-border: #e5e5e7;
+    --apple-shadow: rgba(0, 0, 0, 0.08);
+    --apple-shadow-hover: rgba(0, 0, 0, 0.12);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'SF Pro Display', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.47059;
+    font-weight: 400;
+    letter-spacing: -0.022em;
+    color: var(--apple-text);
+    background: var(--apple-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ヘッダー */
+.header {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--apple-border);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 22px;
+    height: 44px;
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+.nav-brand h1 {
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: -0.022em;
+    color: var(--apple-text);
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 32px;
+}
+
+.nav-menu a {
+    color: var(--apple-text);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    transition: color 0.2s ease;
+    position: relative;
+}
+
+.nav-menu a:hover {
+    color: var(--apple-blue);
+}
+
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--apple-blue);
+    transition: width 0.3s ease;
+}
+
+.nav-menu a:hover::after {
+    width: 100%;
+}
+
+/* ヒーローセクション */
+.hero {
+    background: linear-gradient(180deg, #fbfbfd 0%, #ffffff 100%);
+    padding: 120px 0 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(0, 122, 255, 0.03) 0%, transparent 70%);
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 22px;
+    position: relative;
+    z-index: 1;
+}
+
+.hero h2 {
+    font-size: 56px;
+    font-weight: 600;
+    letter-spacing: -0.003em;
+    line-height: 1.07143;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, var(--apple-text) 0%, var(--apple-blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero p {
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: 0.004em;
+    line-height: 1.10722;
+    color: var(--apple-text-secondary);
+    margin-bottom: 32px;
+}
+
+.cta-button {
+    display: inline-block;
+    background: var(--apple-blue);
+    color: white;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 980px;
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: -0.022em;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 2px 8px var(--apple-shadow);
+}
+
+.cta-button:hover {
+    background: var(--apple-blue-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px var(--apple-shadow-hover);
+}
+
+/* セクション共通 */
+.section {
+    padding: 80px 0;
+}
+
+.container {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 22px;
+}
+
+.section h2 {
+    font-size: 48px;
+    font-weight: 600;
+    letter-spacing: -0.003em;
+    line-height: 1.08349;
+    text-align: center;
+    margin-bottom: 48px;
+    color: var(--apple-text);
+}
+
+/* サービスカード */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-top: 48px;
+}
+
+.service-card {
+    background: var(--apple-bg);
+    border: 1px solid var(--apple-border);
+    border-radius: 18px;
+    padding: 32px;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--apple-blue), #5856d6);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px var(--apple-shadow-hover);
+    border-color: var(--apple-blue);
+}
+
+.service-card:hover::before {
+    transform: scaleX(1);
+}
+
+.service-card h3 {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.003em;
+    margin-bottom: 16px;
+    color: var(--apple-text);
+}
+
+.service-card p {
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.47059;
+    color: var(--apple-text-secondary);
+}
+
+/* お問い合わせフォーム */
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--apple-gray);
+    border-radius: 18px;
+    padding: 48px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    border: 1px solid var(--apple-border);
+    border-radius: 12px;
+    font-size: 17px;
+    font-family: inherit;
+    background: var(--apple-bg);
+    transition: all 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--apple-blue);
+    box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1);
+}
+
+.contact-form button {
+    width: 100%;
+    background: var(--apple-blue);
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 980px;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.contact-form button:hover {
+    background: var(--apple-blue-dark);
+    transform: translateY(-1px);
+}
+
+/* フッター */
+.footer {
+    background: var(--apple-gray);
+    border-top: 1px solid var(--apple-border);
+    padding: 48px 0;
+    text-align: center;
+}
+
+.footer p {
+    color: var(--apple-text-secondary);
+    font-size: 12px;
+    font-weight: 400;
+}
+
+/* アニメーション */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.service-card {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.service-card:nth-child(1) { animation-delay: 0.1s; }
+.service-card:nth-child(2) { animation-delay: 0.2s; }
+.service-card:nth-child(3) { animation-delay: 0.3s; }
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+    }
+    
+    .hero h2 {
+        font-size: 40px;
+    }
+    
+    .hero p {
+        font-size: 21px;
+    }
+    
+    .section h2 {
+        font-size: 32px;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-form {
+        padding: 32px 24px;
+    }
+}
+
+/* ダークモード対応 */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --apple-bg: #000000;
+        --apple-text: #f5f5f7;
+        --apple-text-secondary: #86868b;
+        --apple-gray: #1d1d1f;
+        --apple-gray-dark: #2d2d2f;
+        --apple-border: #38383a;
+        --apple-shadow: rgba(255, 255, 255, 0.08);
+        --apple-shadow-hover: rgba(255, 255, 255, 0.12);
+    }
+    
+    .hero {
+        background: linear-gradient(180deg, #000000 0%, #1d1d1f 100%);
+    }
+}

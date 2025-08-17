@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ドロワー型（オーバーレイ型）ヘッダー - サンプル</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+        
+        .header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2563eb;
+        }
+        
+        .menu-toggle {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #666;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .menu-toggle:hover {
+            color: #2563eb;
+        }
+        
+        .drawer-menu {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: white;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+        
+        .drawer-menu.active {
+            right: 0;
+        }
+        
+        .drawer-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .drawer-header h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .drawer-header p {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+        
+        .close-menu {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .close-menu:hover {
+            background: rgba(255,255,255,0.3);
+            transform: rotate(90deg);
+        }
+        
+        .drawer-content {
+            padding: 2rem;
+        }
+        
+        .drawer-section {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .drawer-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .drawer-section h4 {
+            color: #2563eb;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .drawer-links {
+            list-style: none;
+        }
+        
+        .drawer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .drawer-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            padding: 0.75rem 1rem;
+            display: block;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            border-left: 3px solid transparent;
+        }
+        
+        .drawer-links a:hover {
+            background: #f8f9fa;
+            color: #2563eb;
+            border-left-color: #2563eb;
+            transform: translateX(5px);
+        }
+        
+        .drawer-footer {
+            background: #f8f9fa;
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .contact-info {
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-info p {
+            margin-bottom: 0.5rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            color: #666;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+            padding: 0.5rem;
+            border-radius: 50%;
+            background: white;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .social-links a:hover {
+            color: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            z-index: 1500;
+            backdrop-filter: blur(5px);
+        }
+        
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        .content h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+        
+        .content p {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+        
+        .demo-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .demo-section h3 {
+            color: #2563eb;
+            margin-bottom: 1rem;
+        }
+        
+        .demo-button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin: 0.5rem;
+        }
+        
+        .demo-button:hover {
+            background: #1d4ed8;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">DrawerCorp</div>
+            <button class="menu-toggle" onclick="openMenu()">☰</button>
+        </nav>
+    </header>
+
+    <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+    <div class="drawer-menu" id="drawerMenu">
+        <div class="drawer-header">
+            <button class="close-menu" onclick="closeMenu()">×</button>
+            <h3>DrawerCorp</h3>
+            <p>ナビゲーションメニュー</p>
+        </div>
+        
+        <div class="drawer-content">
+            <div class="drawer-section">
+                <h4>🏠 メインメニュー</h4>
+                <ul class="drawer-links">
+                    <li><a href="#home">ホーム</a></li>
+                    <li><a href="#about">会社概要</a></li>
+                    <li><a href="#services">サービス</a></li>
+                    <li><a href="#portfolio">ポートフォリオ</a></li>
+                </ul>
+            </div>
+            
+            <div class="drawer-section">
+                <h4>🛠️ サービス詳細</h4>
+                <ul class="drawer-links">
+                    <li><a href="#web-development">Web開発</a></li>
+                    <li><a href="#mobile-apps">モバイルアプリ</a></li>
+                    <li><a href="#ui-design">UI/UXデザイン</a></li>
+                    <li><a href="#consulting">コンサルティング</a></li>
+                </ul>
+            </div>
+            
+            <div class="drawer-section">
+                <h4>📚 リソース</h4>
+                <ul class="drawer-links">
+                    <li><a href="#blog">ブログ</a></li>
+                    <li><a href="#case-studies">事例紹介</a></li>
+                    <li><a href="#documentation">ドキュメント</a></li>
+                    <li><a href="#support">サポート</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="drawer-footer">
+            <div class="contact-info">
+                <p>📧 info@drawercorp.com</p>
+                <p>📞 +81-3-1234-5678</p>
+                <p>📍 東京都渋谷区</p>
+            </div>
+            <div class="social-links">
+                <a href="#" title="Twitter">🐦</a>
+                <a href="#" title="Facebook">📘</a>
+                <a href="#" title="Instagram">📷</a>
+                <a href="#" title="LinkedIn">💼</a>
+            </div>
+        </div>
+    </div>
+
+    <section class="hero">
+        <h1>ドロワー型（オーバーレイ型）ヘッダー</h1>
+        <p>右側からスライドインするドロワーメニューを表示するヘッダーサンプル</p>
+    </section>
+
+    <main class="content">
+        <h2>デザインの特徴</h2>
+        <p>このヘッダーデザインは、右側からスライドインするドロワーメニューを特徴としています。</p>
+        <p>メニューが開くと、背景にオーバーレイが表示され、メニューに集中できる環境を提供します。</p>
+        <p>カテゴリ別に整理されたメニュー構造で、使いやすいナビゲーションを実現しています。</p>
+        
+        <div class="demo-section">
+            <h3>ドロワーメニュー</h3>
+            <p>右上のハンバーガーメニュー（☰）をクリックすると、右側からドロワーメニューがスライドインします。</p>
+            <p>メニューが開いている間は、背景にブラー効果付きのオーバーレイが表示されます。</p>
+            <button class="demo-button" onclick="openMenu()">メニューを開く</button>
+        </div>
+        
+        <div class="demo-section">
+            <h3>カテゴリ別メニュー</h3>
+            <p>メニューは「メインメニュー」「サービス詳細」「リソース」の3つのカテゴリに分かれています。</p>
+            <p>各カテゴリには関連するメニュー項目が整理されて表示されます。</p>
+        </div>
+        
+        <div class="demo-section">
+            <h3>インタラクション効果</h3>
+            <p>メニュー項目にホバーすると、背景色が変化し、左側にアクセントカラーのボーダーが表示されます。</p>
+            <p>テキストも右に移動し、動的な効果を演出します。</p>
+        </div>
+        
+        <div class="demo-section">
+            <h3>アニメーション</h3>
+            <p>メニューの開閉時には、スムーズなスライドイン・アウト効果が適用されます。</p>
+            <p>cubic-bezier関数を使用した自然な動きで、高級感のある体験を提供します。</p>
+        </div>
+    </main>
+
+    <script>
+        function openMenu() {
+            const menu = document.getElementById('drawerMenu');
+            const overlay = document.getElementById('overlay');
+            
+            menu.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeMenu() {
+            const menu = document.getElementById('drawerMenu');
+            const overlay = document.getElementById('overlay');
+            
+            menu.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // ESCキーでメニューを閉じる
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeMenu();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プッシュ型ヘッダー - サンプル</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+            transition: transform 0.3s ease;
+        }
+        
+        body.menu-open {
+            transform: translateX(250px);
+            overflow-x: hidden;
+        }
+        
+        .header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2563eb;
+        }
+        
+        .menu-toggle {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #666;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .menu-toggle:hover {
+            color: #2563eb;
+        }
+        
+        .push-menu {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100vh;
+            background: white;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            transition: left 0.3s ease;
+            z-index: 2000;
+            overflow-y: auto;
+        }
+        
+        .push-menu.active {
+            left: 0;
+        }
+        
+        .push-menu-header {
+            background: #2563eb;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .push-menu-header h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .push-menu-header p {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+        
+        .push-menu-links {
+            list-style: none;
+            padding: 2rem 0;
+        }
+        
+        .push-menu-links li {
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .push-menu-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 1rem 2rem;
+            display: block;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .push-menu-links a:hover {
+            background: #f8f9fa;
+            color: #2563eb;
+            border-left-color: #2563eb;
+            padding-left: 2.5rem;
+        }
+        
+        .push-menu-footer {
+            padding: 2rem;
+            border-top: 1px solid #f0f0f0;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .social-links a {
+            color: #666;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: #2563eb;
+        }
+        
+        .close-menu {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .close-menu:hover {
+            color: #e0e0e0;
+            transform: rotate(90deg);
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+            margin-left: 0;
+            transition: margin-left 0.3s ease;
+        }
+        
+        body.menu-open .hero {
+            margin-left: 0;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            margin-left: 0;
+            transition: margin-left 0.3s ease;
+        }
+        
+        body.menu-open .content {
+            margin-left: 0;
+        }
+        
+        .content h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+        
+        .content p {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+        
+        .demo-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .demo-section h3 {
+            color: #2563eb;
+            margin-bottom: 1rem;
+        }
+        
+        .demo-button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin: 0.5rem;
+        }
+        
+        .demo-button:hover {
+            background: #1d4ed8;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1500;
+        }
+        
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">PushCorp</div>
+            <button class="menu-toggle" onclick="openMenu()">☰</button>
+        </nav>
+    </header>
+
+    <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+    <div class="push-menu" id="pushMenu">
+        <button class="close-menu" onclick="closeMenu()">×</button>
+        <div class="push-menu-header">
+            <h3>PushCorp</h3>
+            <p>ナビゲーションメニュー</p>
+        </div>
+        <ul class="push-menu-links">
+            <li><a href="#home">🏠 ホーム</a></li>
+            <li><a href="#about">ℹ️ 会社概要</a></li>
+            <li><a href="#services">🛠️ サービス</a></li>
+            <li><a href="#portfolio">📁 ポートフォリオ</a></li>
+            <li><a href="#blog">📝 ブログ</a></li>
+            <li><a href="#contact">📧 お問い合わせ</a></li>
+        </ul>
+        <div class="push-menu-footer">
+            <div class="social-links">
+                <a href="#" title="Twitter">🐦</a>
+                <a href="#" title="Facebook">📘</a>
+                <a href="#" title="Instagram">📷</a>
+                <a href="#" title="LinkedIn">💼</a>
+            </div>
+            <p style="font-size: 0.8rem; color: #999;">© 2024 PushCorp</p>
+        </div>
+    </div>
+
+    <section class="hero">
+        <h1>プッシュ型ヘッダー</h1>
+        <p>メニューが開くとコンテンツ全体が右にプッシュされるヘッダーサンプル</p>
+    </section>
+
+    <main class="content">
+        <h2>デザインの特徴</h2>
+        <p>このヘッダーデザインは、サイドメニューが開くとメインコンテンツ全体が右にプッシュされる動作を特徴としています。</p>
+        <p>左側からスライドインするメニューと、コンテンツの移動が同時に起こります。</p>
+        <p>オーバーレイ効果も加わり、メニューに集中できる環境を提供します。</p>
+        
+        <div class="demo-section">
+            <h3>プッシュメニュー</h3>
+            <p>左上のハンバーガーメニュー（☰）をクリックすると、左側からメニューがスライドインし、コンテンツ全体が右に移動します。</p>
+            <p>メニューが開いている間は、背景にオーバーレイが表示されます。</p>
+            <button class="demo-button" onclick="openMenu()">メニューを開く</button>
+        </div>
+        
+        <div class="demo-section">
+            <h3>インタラクション効果</h3>
+            <p>メニュー項目にホバーすると、背景色が変化し、左側にアクセントカラーのボーダーが表示されます。</p>
+            <p>テキストも右に移動し、動的な効果を演出します。</p>
+        </div>
+        
+        <div class="demo-section">
+            <h3>アニメーション</h3>
+            <p>メニューの開閉時には、スムーズなスライドイン・アウト効果が適用されます。</p>
+            <p>コンテンツ全体の移動も、メニューの動きと連動して滑らかに実行されます。</p>
+        </div>
+        
+        <div class="demo-section">
+            <h3>レスポンシブ対応</h3>
+            <p>メニューの幅は固定されており、様々な画面サイズに対応しています。</p>
+            <p>モバイルデバイスでも、使いやすいナビゲーションを提供します。</p>
+        </div>
+    </main>
+
+    <script>
+        function openMenu() {
+            const menu = document.getElementById('pushMenu');
+            const overlay = document.getElementById('overlay');
+            const body = document.body;
+            
+            menu.classList.add('active');
+            overlay.classList.add('active');
+            body.classList.add('menu-open');
+            body.style.overflow = 'hidden';
+        }
+        
+        function closeMenu() {
+            const menu = document.getElementById('pushMenu');
+            const overlay = document.getElementById('overlay');
+            const body = document.body;
+            
+            menu.classList.remove('active');
+            overlay.classList.remove('active');
+            body.classList.remove('menu-open');
+            body.style.overflow = 'auto';
+        }
+        
+        // ESCキーでメニューを閉じる
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeMenu();
+            }
+        });
+    </script>
+</body>
+</html>

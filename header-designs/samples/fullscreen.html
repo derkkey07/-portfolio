@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>フルスクリーン型ヘッダー - サンプル</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+        
+        .header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2563eb;
+        }
+        
+        .menu-toggle {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #666;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .menu-toggle:hover {
+            color: #2563eb;
+        }
+        
+        .fullscreen-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+            z-index: 2000;
+        }
+        
+        .fullscreen-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .fullscreen-menu-content {
+            text-align: center;
+            color: white;
+        }
+        
+        .fullscreen-menu-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .fullscreen-menu-links li {
+            margin: 2rem 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.5s ease;
+        }
+        
+        .fullscreen-menu.active .fullscreen-menu-links li {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .fullscreen-menu-links li:nth-child(1) { transition-delay: 0.1s; }
+        .fullscreen-menu-links li:nth-child(2) { transition-delay: 0.2s; }
+        .fullscreen-menu-links li:nth-child(3) { transition-delay: 0.3s; }
+        .fullscreen-menu-links li:nth-child(4) { transition-delay: 0.4s; }
+        .fullscreen-menu-links li:nth-child(5) { transition-delay: 0.5s; }
+        
+        .fullscreen-menu-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 2.5rem;
+            font-weight: 300;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 1rem 2rem;
+            border: 2px solid transparent;
+            border-radius: 10px;
+        }
+        
+        .fullscreen-menu-links a:hover {
+            color: #2563eb;
+            border-color: #2563eb;
+            background: rgba(37, 99, 235, 0.1);
+            transform: scale(1.05);
+        }
+        
+        .close-menu {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .close-menu:hover {
+            color: #2563eb;
+            transform: rotate(90deg);
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        .content h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+        
+        .content p {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+        
+        .demo-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .demo-section h3 {
+            color: #2563eb;
+            margin-bottom: 1rem;
+        }
+        
+        .demo-button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin: 0.5rem;
+        }
+        
+        .demo-button:hover {
+            background: #1d4ed8;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">FullscreenCorp</div>
+            <button class="menu-toggle" onclick="openMenu()">☰</button>
+        </nav>
+    </header>
+
+    <div class="fullscreen-menu" id="fullscreenMenu">
+        <button class="close-menu" onclick="closeMenu()">×</button>
+        <div class="fullscreen-menu-content">
+            <ul class="fullscreen-menu-links">
+                <li><a href="#home">ホーム</a></li>
+                <li><a href="#about">会社概要</a></li>
+                <li><a href="#services">サービス</a></li>
+                <li><a href="#portfolio">ポートフォリオ</a></li>
+                <li><a href="#contact">お問い合わせ</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <section class="hero">
+        <h1>フルスクリーン型ヘッダー</h1>
+        <p>画面全体を覆うフルスクリーンメニューを表示するヘッダーサンプル</p>
+    </section>
+
+    <main class="content">
+        <h2>デザインの特徴</h2>
+        <p>このヘッダーデザインは、ハンバーガーメニューをクリックすると画面全体を覆うフルスクリーンメニューが表示される動作を特徴としています。</p>
+        <p>背景が暗くなり、メニュー項目が中央に大きく表示されます。</p>
+        <p>スムーズなアニメーションと視覚効果で、没入感のあるナビゲーション体験を提供します。</p>
+        
+        <div class="demo-section">
+            <h3>フルスクリーンメニュー</h3>
+            <p>右上のハンバーガーメニュー（☰）をクリックすると、フルスクリーンメニューが表示されます。</p>
+            <p>各メニュー項目は、順番にフェードインしながら表示されます。</p>
+            <button class="demo-button" onclick="openMenu()">メニューを開く</button>
+        </div>
+        
+        <div class="demo-section">
+            <h3>インタラクション効果</h3>
+            <p>メニュー項目にホバーすると、色が変化し、ボーダーと背景が表示されます。</p>
+            <p>スケール効果も加わり、インタラクティブな体験を提供します。</p>
+        </div>
+        
+        <div class="demo-section">
+            <h3>アニメーション</h3>
+            <p>メニューの開閉時には、背景のブラー効果と透明度の変化が適用されます。</p>
+            <p>メニュー項目は、順次表示されるスタガードアニメーションを採用しています。</p>
+        </div>
+    </main>
+
+    <script>
+        function openMenu() {
+            const menu = document.getElementById('fullscreenMenu');
+            menu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeMenu() {
+            const menu = document.getElementById('fullscreenMenu');
+            menu.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // ESCキーでメニューを閉じる
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeMenu();
+            }
+        });
+        
+        // メニュー外をクリックで閉じる
+        document.getElementById('fullscreenMenu').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeMenu();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お問い合わせ窓口型お問い合わせフォーム - サンプル</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .form-header {
+            background: #f8f9fa;
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .form-header h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-header p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .contact-section {
+            padding: 3rem 2rem;
+        }
+        
+        .contact-header {
+            background: #007bff;
+            color: white;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .contact-description {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+        
+        .contact-boxes {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .contact-box {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .contact-box:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: #f8f9fa;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+        }
+        
+        .contact-box h3 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .contact-phone {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #007bff;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-note {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-form {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .form-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+            font-size: 0.9rem;
+        }
+        
+        .required {
+            color: #e74c3c;
+        }
+        
+        .input-wrapper {
+            flex: 1;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 0.875rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+        }
+        
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+            font-family: inherit;
+        }
+        
+        .form-select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+        }
+        
+        .form-actions {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .submit-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 1rem 3rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 200px;
+        }
+        
+        .submit-btn:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .features-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-top: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        
+        .features-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #333;
+            text-align: center;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .feature-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #007bff;
+        }
+        
+        .feature-item h4 {
+            color: #007bff;
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+        }
+        
+        .feature-item p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .contact-boxes {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .contact-section {
+                padding: 2rem 1.5rem;
+            }
+            
+            .contact-header {
+                padding: 1.5rem 1rem;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-header">
+            <h1>お問い合わせ窓口型</h1>
+            <p>分かりやすいお問い合わせ窓口とフォームを組み合わせたデザイン</p>
+        </div>
+        
+        <div class="contact-section">
+            <div class="contact-header">
+                お問い合わせ窓口
+            </div>
+            
+            <div class="contact-description">
+                富士すばるランド全般についての、ご意見・ご感想・ご質問は、専用のお問い合わせフォーム、またはお電話にて受け付けております。
+            </div>
+            
+            <div class="contact-boxes">
+                <div class="contact-box">
+                    <div class="contact-icon">👥</div>
+                    <h3>団体利用のご予約・お問い合わせ</h3>
+                    <div class="contact-phone">0555-72-2239</div>
+                    <div class="contact-note">営業時間: 9:00〜17:00</div>
+                    <button class="submit-btn" style="min-width: auto; padding: 0.75rem 1.5rem; font-size: 0.9rem;">お問い合わせ</button>
+                </div>
+                
+                <div class="contact-box">
+                    <div class="contact-icon">✂️</div>
+                    <h3>ドッグサロンのお問い合わせ</h3>
+                    <div class="contact-phone">0555-72-6021</div>
+                    <div class="contact-note">営業時間: 10:00〜18:00</div>
+                    <button class="submit-btn" style="min-width: auto; padding: 0.75rem 1.5rem; font-size: 0.9rem;">お問い合わせ</button>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <div class="form-title">お問い合わせフォーム</div>
+                
+                <form>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">お名前 <span class="required">*</span></label>
+                            <input type="text" class="form-input" placeholder="山田太郎" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">メールアドレス <span class="required">*</span></label>
+                            <input type="email" class="form-input" placeholder="example@email.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">電話番号</label>
+                            <input type="tel" class="form-input" placeholder="090-1234-5678">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">お問い合わせ種別 <span class="required">*</span></label>
+                            <select class="form-input form-select" required>
+                                <option value="">選択してください</option>
+                                <option value="general">一般的なお問い合わせ</option>
+                                <option value="group">団体利用について</option>
+                                <option value="dog-salon">ドッグサロンについて</option>
+                                <option value="other">その他</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label class="form-label">お問い合わせ内容 <span class="required">*</span></label>
+                            <textarea class="form-input form-textarea" placeholder="お問い合わせ内容を詳しくお書きください" required></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn">送信する</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="features-section">
+                <h3>このフォームの特徴</h3>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <h4>分かりやすい窓口</h4>
+                        <p>電話番号と用途が明確に分かれたお問い合わせ窓口で、ユーザーが迷わずに連絡できます。</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>視覚的なアイコン</h4>
+                        <p>各窓口に適切なアイコンを配置し、直感的に内容を理解できるデザインです。</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>統一されたフォーム</h4>
+                        <p>窓口とフォームが統一されたデザインで、一貫性のあるユーザー体験を提供します。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
