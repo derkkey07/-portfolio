@@ -8,22 +8,22 @@ const Projects: React.FC = () => {
   const projects = [
     {
       id: 1,
-      title: 'バックパッカー向けマップ共有サイト',
-      description: 'Flutter、React、Pythonを使用したバックパッカー向けの地図共有アプリケーション。ユーザーが旅行体験を共有し、おすすめスポットを投稿できるプラットフォーム。',
-      longDescription: 'このプロジェクトは、私が初めてフルスタック開発に挑戦した作品です。Flutterでモバイルアプリ、ReactでWebアプリ、PythonでバックエンドAPIを構築しました。特に地図表示の実装では、座標計算やユーザーの位置情報の扱いに苦労しましたが、最終的にはスムーズな地図操作を実現できました。',
+      title: 'バックパッカー向け位置共有アプリ',
+      description: 'Flutter、React、Pythonを使用したバックパッカー向けの位置共有アプリケーション。リアルタイム位置追跡、スポット投稿、旅行記録機能を統合したクロスプラットフォームアプリ。',
+      longDescription: 'このプロジェクトは、私が初めてフルスタック開発に挑戦した作品です。Flutterでモバイルアプリ、ReactでWebアプリ、PythonでバックエンドAPIを構築しました。特に地図表示の実装では、座標計算やユーザーの位置情報の扱いに苦労しましたが、最終的にはスムーズな地図操作を実現できました。リアルタイム位置追跡機能では、WebSocketを使用して複数ユーザーの位置を同時に表示し、旅行仲間との位置共有を可能にしました。',
       image: '/api/placeholder/400/250',
-      category: 'web',
-      technologies: ['Flutter', 'React', 'Python', 'Ruby', 'JavaScript', 'HTML/CSS'],
+      category: 'mobile',
+      technologies: ['Flutter', 'React', 'Python', 'Firebase', 'Google Maps API', 'WebSocket', 'PostgreSQL'],
       github: 'https://github.com/derkkey07/backpacker-map',
       live: 'https://backpacker-map.vercel.app',
-      features: ['地図表示', 'スポット投稿', 'ユーザー認証', 'レスポンシブデザイン'],
+      features: ['リアルタイム位置追跡', 'スポット投稿・レビュー', '旅行記録・写真共有', 'オフライン地図', 'プッシュ通知', 'グループ機能'],
       stats: { users: '500+', downloads: '1K+', rating: '4.5' },
       developmentPeriod: '2023年6月 - 2023年12月',
-      role: 'フルスタック開発（設計・開発・デプロイ）',
-      challenges: ['地図APIの統合', 'リアルタイムデータ同期', 'モバイル・Web間のデータ連携'],
-      solutions: ['Google Maps APIの活用', 'WebSocketによるリアルタイム通信', '統一されたデータ形式の設計'],
-      learnings: ['フルスタック開発の流れ', 'API設計の重要性', 'ユーザビリティの考え方'],
-      improvements: ['パフォーマンス最適化', 'セキュリティ強化', 'ユーザー体験の向上']
+      role: 'フルスタック開発（設計・開発・デプロイ・運用）',
+      challenges: ['リアルタイム位置追跡の実装', 'オフライン対応とデータ同期', 'モバイル・Web間の統一UX', '位置情報のプライバシー保護'],
+      solutions: ['WebSocket + Firebase Realtime Database', 'SQLite + バックグラウンド同期', '統一デザインシステムの構築', '位置情報の暗号化と権限管理'],
+      learnings: ['リアルタイムアプリケーションの設計', 'クロスプラットフォーム開発の課題', '位置情報サービスの実装', 'ユーザープライバシーの重要性'],
+      improvements: ['パフォーマンス最適化（位置更新頻度調整）', 'セキュリティ強化（JWT認証）', 'ユーザー体験向上（直感的なUI/UX）', 'バッテリー消費の最適化']
     },
     {
       id: 2,

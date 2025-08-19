@@ -65,10 +65,11 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed"
           >
-            中学時代からWebサイト制作に興味を持ち、現在はFlutter、React、Pythonなどを中心とした
-            モバイルアプリ・Webアプリケーションの開発に取り組んでいます。
-            マレーシアの大学でMechatronic Engineeringを専攻し、技術と工学の両面から
-            革新的なソリューションを創造することに情熱を持っています。
+            中学時代からWebサイト制作に興味を持ち、現在はFlutter、React、Python、Firebaseなどを中心とした
+            リアルタイムアプリケーション・クロスプラットフォーム開発に取り組んでいます。
+            バックパッカー向け位置共有アプリの開発を通じて、リアルタイム位置追跡やオフライン対応など
+            実用的な技術を習得しました。マレーシアの大学でMechatronic Engineeringを専攻し、
+            技術と工学の両面から革新的なソリューションを創造することに情熱を持っています。
           </motion.p>
 
           {/* CTA Buttons */}

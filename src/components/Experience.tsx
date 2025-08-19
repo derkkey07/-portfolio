@@ -10,12 +10,13 @@ const Experience: React.FC = () => {
       company: 'フリーランス',
       period: '2022年 - 現在',
       location: 'マレーシア・日本',
-      description: 'バックパッカー向けマップ共有サイトの設計から開発までを担当。フロントエンド・バックエンド・データベース設計を一貫して実装。',
-      technologies: ['Flutter', 'React', 'Python', 'Ruby', 'JavaScript', 'HTML/CSS'],
+      description: 'バックパッカー向け位置共有アプリの設計から開発・運用までを担当。リアルタイム位置追跡、クロスプラットフォーム対応、オフライン機能を統合したフルスタックアプリケーションを構築。',
+      technologies: ['Flutter', 'React', 'Python', 'Firebase', 'Google Maps API', 'WebSocket', 'PostgreSQL'],
       achievements: [
-        'ユーザー体験を重視した直感的なUI/UX設計',
-        'レスポンシブデザインによる多デバイス対応',
-        '効率的なデータベース設計とAPI開発'
+        'リアルタイム位置追跡機能の実装（WebSocket + Firebase）',
+        'クロスプラットフォーム対応（モバイル・Web統一UX）',
+        'オフライン対応とデータ同期機能の開発',
+        '位置情報のプライバシー保護とセキュリティ強化'
       ]
     },
     {

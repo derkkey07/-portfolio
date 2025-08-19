@@ -82,9 +82,9 @@ const About: React.FC = () => {
                 経歴と情熱
               </h3>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                            中学時代からWebサイト制作に興味を持ち、現在はマレーシアの大学でMechatronic Engineeringを専攻しています。
-            プログラミングの経験は6年以上あり、Flutter、React、Python、Ruby、JavaScript、HTML、CSSなど
-            幅広い技術スタックを習得しています。
+                中学時代からWebサイト制作に興味を持ち、現在はマレーシアの大学でMechatronic Engineeringを専攻しています。
+                プログラミングの経験は6年以上あり、特にバックパッカー向け位置共有アプリの開発を通じて、
+                Flutter、React、Python、Firebase、Google Maps API、WebSocketなど幅広い技術スタックを習得しています。
               </p>
             </div>
 
@@ -93,10 +93,10 @@ const About: React.FC = () => {
                 専門分野
               </h3>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                            Flutter（2年）、React（2年）、Ruby（2年）、Python（4年）、JavaScript（4年）、HTML（6年）、CSS（6年）の
-            経験を持ち、特にモバイルアプリ開発とWebアプリケーション開発が専門です。
-            Mechatronic Engineeringの知識と組み合わせることで、ハードウェアとソフトウェアの両面から
-            問題解決に取り組むことができます。
+                Flutter（2年）、React（2年）、Python（4年）、Firebase（2年）、Google Maps API（2年）、WebSocket（2年）、
+                JavaScript（4年）、HTML（6年）、CSS（6年）の経験を持ち、特にリアルタイムアプリケーション開発と
+                クロスプラットフォーム開発が専門です。バックパッカー向け位置共有アプリでは、リアルタイム位置追跡、
+                オフライン対応、プライバシー保護など複雑な要件を実現しました。
               </p>
             </div>
 
@@ -105,10 +105,11 @@ const About: React.FC = () => {
                 開発哲学
               </h3>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                            コードの品質、パフォーマンス、セキュリティを重視し、保守性の高いアプリケーションの開発を心がけています。
-            ユーザーのニーズを深く理解し、直感的で使いやすいインターフェースを設計することに情熱を持っています。
-            また、Mechatronic Engineeringの知識を活かし、ハードウェアとソフトウェアの両面から
-            革新的なソリューションを創造することに取り組んでいます。
+                コードの品質、パフォーマンス、セキュリティを重視し、保守性の高いアプリケーションの開発を心がけています。
+                特にリアルタイムアプリケーションでは、ユーザーのプライバシー保護とデータセキュリティを最優先に考え、
+                直感的で使いやすいインターフェースを設計することに情熱を持っています。
+                バックパッカー向け位置共有アプリでは、位置情報の暗号化、権限管理、バッテリー消費の最適化など、
+                実用的な課題解決に取り組みました。
               </p>
             </div>
 
@@ -118,7 +119,7 @@ const About: React.FC = () => {
                 主要技術スタック
               </h4>
               <div className="flex flex-wrap gap-2">
-                {['Flutter', 'React', 'Python', 'Ruby', 'JavaScript', 'HTML/CSS', 'Firebase', 'Google Cloud Platform'].map((skill, index) => (
+                {['Flutter', 'React', 'Python', 'Firebase', 'Google Maps API', 'WebSocket', 'JavaScript', 'HTML/CSS'].map((skill, index) => (
                   <motion.span
                     key={skill}
                     initial={{ opacity: 0, scale: 0.8 }}
