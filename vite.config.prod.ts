@@ -11,9 +11,9 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
-        'cafe-serenity': resolve(__dirname, 'cafe-serenity/index.html'),
-        'reservation-demo': resolve(__dirname, 'reservation-demo/index.html'),
-        'online-order-demo': resolve(__dirname, 'online-order-demo/index.html')
+        'cafe-serenity': resolve(__dirname, 'public/cafe-serenity/index.html'),
+        'reservation-demo': resolve(__dirname, 'public/reservation-demo/index.html'),
+        'online-order-demo': resolve(__dirname, 'public/online-order-demo/index.html')
       },
       output: {
         manualChunks: {

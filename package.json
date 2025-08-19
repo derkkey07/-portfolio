@@ -11,7 +11,7 @@
     "preview:prod": "vite preview --port 4173",
     "serve": "vite preview --port 3000",
     "vercel-build": "npm run build:prod",
-    "vercel-dev": "npm run dev"
+    "vercel-dev": "npm run dev",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
